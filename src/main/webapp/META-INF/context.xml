@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+        
+   <Resource name="jdbc/mysqldb"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="root"
+            password="123456"
+            driverClassName="org.mariadb.jdbc.Driver"
+            url="jdbc:mariadb://127.0.0.1:3306/test"
+            maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+            />
+</Context>  
