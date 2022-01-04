@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.naming.Context;
@@ -14,6 +16,10 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,5 +63,19 @@ public class HomeController {
 
 		return "home";
 	}
-	
+
+
+	@RequestMapping(value = "data.json", method = RequestMethod.GET)
+	public ResponseEntity<List> data() {
+
+		List<String> list = new ArrayList<String>();
+		list.add("대한민국");
+		list.add("싱가포르");
+		list.add("중국");
+		list.add("대만");
+		list.add("일본");
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		return new ResponseEntity<List>(list, headers, HttpStatus.OK);
+	}
 }
